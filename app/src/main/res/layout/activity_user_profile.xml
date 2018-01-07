@@ -49,6 +49,13 @@
                 android:layout_height="1dp"
                 android:background="@color/colorAccent" />
 
+            <Spinner
+                android:id="@+id/tvLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/>
+
         </LinearLayout>
     </RelativeLayout>
 

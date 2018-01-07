@@ -19,10 +19,14 @@ class ApplicationController : Application() {
     lateinit var mSerialRequestQueue: RequestQueue
     var MAX_SERIAL_THREAD_POOL_SIZE = 1
     val MAX_CACHE_SIZE = 2 * 1024 * 1024 //2 MB
+    val languageArray: HashMap<String, String> =
+            hashMapOf("English" to "en", "Marathi" to "mr", "Telugu" to "te") // language codes
 
     override fun onCreate() {
         super.onCreate()
         instance = this
+
+        loadLocale() // Load default locale or pre-set locale
     }
 
     fun getRequestQueue(): RequestQueue {
@@ -70,6 +74,28 @@ class ApplicationController : Application() {
 
     fun activityPaused() {
         activityVisible = false
+    }
+
+    fun loadLocale() {
+        val sharedPref = this.getSharedPreferences("myApp", Context.MODE_PRIVATE)
+        if(sharedPref.contains("language")) {
+            var langKey = sharedPref.getString("language", "")
+            val lang = languageArray.get(langKey).toString()
+            changeLocale(lang)
+        } else {
+            changeLocale("en")
+        }
+    }
+
+    fun changeLocale(lang: String) {
+        var locale = java.util.Locale(lang)
+        java.util.Locale.setDefault(locale)
+        var config = this.resources.getConfiguration()
+        config.setLocale(locale)
+        this.resources.updateConfiguration(
+                config,
+                this.resources.getDisplayMetrics()
+        );
     }
 
     companion object {
