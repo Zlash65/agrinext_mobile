@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AgriNext</string>
+    <string name="navigation_drawer_open">"नेव्हिगेशन ड्रॉवर उघडा "</string>
+    <string name="navigation_drawer_close">"नेव्हिगेशन ड्रॉवर बंद करा "</string>
+    <string name="action_settings">"सेटिंग्ज "</string>
+    <string name="menuMarket">"बाजार "</string>
+    <string name="menuSellers">विक्रेते</string>
+    <string name="menuChats">"गप्पा मारा "</string>
+    <string name="menuMyProfile">"माझे प्रोफाइल "</string>
+    <string name="menuMyProduce">"माझी उत्पादने "</string>
+    <string name="menuInvite">"आमंत्रित करा "</string>
+    <string name="menuItem">आयटम</string>
+    <string name="menuLocations">स्थाने</string>
+    <string name="menuGroupAdmin">"प्रशासन "</string>
+    <string name="textList">यादी</string>
+    <string name="textFilters">फिल्टर्स</string>
+    <string name="tapToSignIn">"साइन इन करण्यासाठी टॅप करा "</string>
+    <string name="welcome">"स्वागत आहे "</string>
+    <string name="tapToRefresh">"रीफ्रेश करण्यासाठी टॅप करा "</string>
+    <string name="please_add_account">"कृपया खाते जोडा "</string>
+    <string name="somethingWrong">"काहीतरी चूक झाली "</string>
+    <string name="click_ok_when_enabled">"सक्षम केले असताना ठीक क्लिक करा "</string>
+    <string name="ok">"ठीक आहे "</string>
+</resources>

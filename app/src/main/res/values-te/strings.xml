@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AgriNext</string>
+    <string name="navigation_drawer_open">"నావిగేషన్ డ్రాయర్ తెరవండి "</string>
+    <string name="navigation_drawer_close">"నావిగేషన్ డ్రాయర్ని మూసివేయి "</string>
+    <string name="action_settings">సెట్టింగులు</string>
+    <string name="menuMarket">మార్కెట్</string>
+    <string name="menuSellers">సెల్లెర్స్</string>
+    <string name="menuChats">చాట్</string>
+    <string name="menuMyProfile">"నా జీవన వివరణ "</string>
+    <string name="menuMyProduce">"నా ఉత్పత్తి "</string>
+    <string name="menuInvite">"ఆహ్వానించండి "</string>
+    <string name="menuItem">"అంశాలు "</string>
+    <string name="menuLocations">"స్థానాలు "</string>
+    <string name="menuGroupAdmin">"అడ్మిన్ "</string>
+    <string name="textList">జాబితా</string>
+    <string name="textFilters">వడపోతలు</string>
+    <string name="tapToSignIn">"సైన్ ఇన్ చేయడానికి నొక్కండి "</string>
+    <string name="welcome">స్వాగతం</string>
+    <string name="tapToRefresh">"రిఫ్రెష్ చేయడానికి నొక్కండి "</string>
+    <string name="please_add_account">"దయచేసి ఖాతాను జోడించండి "</string>
+    <string name="somethingWrong">"ఎక్కడో తేడ జరిగింది "</string>
+    <string name="ok">"అలాగే "</string>
+    <string name="click_ok_when_enabled">"సక్రియంలో ఉన్నప్పుడు సరే క్లిక్ చేయండి "</string>
+    <string name="please_enable_net_connection">"దయచేసి నెట్వర్క్ కనెక్షన్ను ప్రారంభించండి! "</string>
+</resources>

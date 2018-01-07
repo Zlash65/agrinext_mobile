@@ -5,7 +5,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
-    <string name="support_email">foundation@erpnext.org</string>
+    <string name="support_email" translatable="false">foundation@erpnext.org</string>
     <string name="menuMarket">Market</string>
     <string name="menuSellers">Sellers</string>
     <string name="menuMyProfile">My Profile</string>
@@ -26,20 +26,20 @@
     <string name="please_enable_net_connection">Please Enable Network Connection!</string>
 
     <!-- OAUTH -->
-    <string name="allowMultipleAccounts">0</string>
-    <string name="authEndpoint">/api/method/frappe.integrations.oauth2.authorize</string>
-    <string name="authOTPEndpoint">/api/method/agrinext.otp.authenticate</string>
-    <string name="clientId">6663db6e09</string>
-    <string name="redirectURI">oauth://oauth2authenticator</string>
-    <string name="clientSecret">nosecret</string>
-    <string name="expiresIn">3300</string>
-    <string name="getOTPEndpoint">/api/method/agrinext.otp.get</string>
-    <string name="oauth2Scope">openid all</string>
-    <string name="openIDEndpoint">/api/method/frappe.integrations.oauth2.openid_profile</string>
-    <string name="otpLen">6</string>
-    <string name="otpSenderNumber">MNTECH</string>
-    <string name="package_name">org.agrinext.agrimobile</string>
-    <string name="serverURL">http://192.168.0.108:8000</string>
-    <string name="tokenEndpoint">/api/method/frappe.integrations.oauth2.get_token</string>
+    <string name="allowMultipleAccounts" translatable="false">0</string>
+    <string name="authEndpoint" translatable="false">/api/method/frappe.integrations.oauth2.authorize</string>
+    <string name="authOTPEndpoint" translatable="false">/api/method/agrinext.otp.authenticate</string>
+    <string name="clientId" translatable="false">6663db6e09</string>
+    <string name="redirectURI" translatable="false">oauth://oauth2authenticator</string>
+    <string name="clientSecret" translatable="false">nosecret</string>
+    <string name="expiresIn" translatable="false">3300</string>
+    <string name="getOTPEndpoint" translatable="false">/api/method/agrinext.otp.get</string>
+    <string name="oauth2Scope" translatable="false">openid all</string>
+    <string name="openIDEndpoint" translatable="false">/api/method/frappe.integrations.oauth2.openid_profile</string>
+    <string name="otpLen" translatable="false">6</string>
+    <string name="otpSenderNumber" translatable="false">MNTECH</string>
+    <string name="package_name" translatable="false">org.agrinext.agrimobile</string>
+    <string name="serverURL" translatable="false">http://192.168.0.108:8000</string>
+    <string name="tokenEndpoint" translatable="false">/api/method/frappe.integrations.oauth2.get_token</string>
 
 </resources>
