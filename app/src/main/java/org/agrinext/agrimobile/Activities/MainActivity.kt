@@ -96,6 +96,9 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
+            R.id.nav_dashboard -> {
+                fragment = Dashboard()
+            }
             R.id.nav_market -> {
                 startActivity(Intent(this, ListingActivity::class.java))
             }
@@ -149,6 +152,8 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
             toggle.syncState()
 
             nav_view.setNavigationItemSelectedListener(this)
+            nav_view.setCheckedItem(R.id.nav_dashboard)
+            nav_view.getMenu().performIdentifierAction(R.id.nav_dashboard, 0)
 
         } else {
             desktop_text.setText(R.string.tapToSignIn)
