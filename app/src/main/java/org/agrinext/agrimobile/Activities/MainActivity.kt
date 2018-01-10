@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
@@ -23,11 +24,11 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.share
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import org.json.JSONException
 
 class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     internal lateinit var mAccountManager: AccountManager
     internal lateinit var accounts: Array <Account>
+    var fragment: Fragment? = null
     val ACCOUNT_TYPE = "ACCOUNT_TYPE"
     val TAG = "AgriNext"
 
@@ -102,7 +103,7 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this, ListingActivity::class.java))
             }
             R.id.nav_my_profile -> {
-                startActivity(Intent(this, UserProfile::class.java))
+                fragment = UserProfile()
             }
             R.id.nav_my_produce -> {
                 startActivity(Intent(this, ProduceActivity::class.java))
@@ -116,6 +117,15 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
             R.id.nav_items -> {
                 startActivity(Intent(this, ListingActivity::class.java))
             }
+        }
+
+        if (fragment != null) {
+            var fragmentManager = getSupportFragmentManager()
+            var ft = fragmentManager.beginTransaction()
+
+            ft.replace(R.id.screen_area, fragment)
+            ft.commit()
+
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -139,21 +149,14 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
             toggle.syncState()
 
             nav_view.setNavigationItemSelectedListener(this)
-            desktop_text.setText(R.string.welcome)
-            linearLayoutDesktop.onClick {
-                toast(accounts[0].name)
-                try {
-                    throw JSONException("JSONError")
-                } catch (e: JSONException) {
-                    throw RuntimeException(e)
-                }
-            }
+
         } else {
             desktop_text.setText(R.string.tapToSignIn)
             linearLayoutDesktop.onClick {
                 startActivity<AuthenticatorActivity>(
                         ACCOUNT_TYPE to BuildConfig.APPLICATION_ID
                 )
+                linearLayoutDesktop.setVisibility(LinearLayout.GONE)
             }
         }
     }
