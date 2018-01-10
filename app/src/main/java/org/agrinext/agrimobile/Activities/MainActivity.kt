@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mntechnique.otpmobileauth.auth.AuthenticatorActivity
@@ -109,7 +110,7 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
                 fragment = UserProfile()
             }
             R.id.nav_my_produce -> {
-                startActivity(Intent(this, ProduceActivity::class.java))
+                fragment = ProduceActivity()
             }
             R.id.nav_invite -> {
                 share("https://agrinext.org")
@@ -161,7 +162,7 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity<AuthenticatorActivity>(
                         ACCOUNT_TYPE to BuildConfig.APPLICATION_ID
                 )
-                linearLayoutDesktop.setVisibility(LinearLayout.GONE)
+                linearLayoutDesktop.visibility = View.GONE
             }
         }
     }

@@ -6,26 +6,23 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.Menu
-import android.widget.Filter
 import android.support.v7.widget.SearchView
 import com.mntechnique.otpmobileauth.auth.AuthReqCallback
-import org.agrinext.agrimobile.Android.BaseCompatActivity
 import org.agrinext.agrimobile.Android.EndlessRecyclerViewScrollListener
 import org.agrinext.agrimobile.BuildConfig
 import org.agrinext.agrimobile.Android.FrappeClient
 import org.agrinext.agrimobile.Android.ListViewAdapter
 import org.agrinext.agrimobile.R
-import org.jetbrains.anko.toast
 import org.json.JSONArray
 import org.json.JSONObject
-import android.app.SearchManager
-import android.content.Context
-import android.view.MenuItem
-import android.view.View
+import android.support.v4.app.Fragment
+import android.view.*
 import android.widget.ProgressBar
+import org.jetbrains.anko.searchManager
+import org.jetbrains.anko.support.v4.find
+import org.jetbrains.anko.support.v4.toast
 
-class ProduceActivity : BaseCompatActivity() {
+class ProduceActivity : Fragment() {
     var recyclerAdapter: ListViewAdapter? = null
     var recyclerModels = JSONArray()
     var searchView : SearchView? = null
@@ -36,17 +33,20 @@ class ProduceActivity : BaseCompatActivity() {
     var filters: String? = null
     var user:String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_listing)
-        mAccountManager = AccountManager.get(this)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.activity_listing, null)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mAccountManager = AccountManager.get(activity)
         accounts = mAccountManager?.getAccountsByType(BuildConfig.APPLICATION_ID)
         user = accounts?.get(0)?.name
 
         filters = "[[\"owner\",\"=\",\"" + user + "\"]]"
 
-        mRecyclerView = findViewById(R.id.recycler_view)
-        progressBar = findViewById(R.id.edit_progress_bar)
+        mRecyclerView = find(R.id.recycler_view)
+        progressBar = find(R.id.edit_progress_bar)
         progressBar?.visibility = View.VISIBLE
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -58,7 +58,7 @@ class ProduceActivity : BaseCompatActivity() {
 
     private fun setRecycleViewScrollListener() {
         // use a linear layout manager
-        val mLayoutManager = LinearLayoutManager(this)
+        val mLayoutManager = LinearLayoutManager(activity)
         mRecyclerView.setLayoutManager(mLayoutManager)
 
         mRecyclerView.addOnScrollListener(object: EndlessRecyclerViewScrollListener(mLayoutManager){
@@ -68,12 +68,13 @@ class ProduceActivity : BaseCompatActivity() {
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.list_view, menu)
-        // Associate searchable configuration with the SearchView
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+    override fun onCreateOptionsMenu(menu: Menu?, menuInflater: MenuInflater?) { // here <---------------
+        super.onCreateOptionsMenu(menu, menuInflater) // <----------
+        menuInflater!!.inflate(R.menu.list_view, menu) // <------------
+
+        val searchManager = context.searchManager
         searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
-        searchView?.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName)) // here <---------
         searchView?.setMaxWidth(Integer.MAX_VALUE)
         // listening to search query text change
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -100,7 +101,7 @@ class ProduceActivity : BaseCompatActivity() {
                 return false
             }
         })
-        return true
+//        return true // something here <-----------
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -116,7 +117,7 @@ class ProduceActivity : BaseCompatActivity() {
         Log.d("Limit_page_length", limit_page_length)
         Log.d("limit_start", limit_start)
 
-        val request = FrappeClient(this).get_all(
+        val request = FrappeClient(activity).get_all(
                 doctype = "Add Produce",
                 filters = filters,
                 limit_page_length = limit_page_length,
@@ -148,6 +149,6 @@ class ProduceActivity : BaseCompatActivity() {
             }
         }
 
-        FrappeClient(this).executeRequest(request, responseCallback)
+        FrappeClient(activity).executeRequest(request, responseCallback)
     }
 }
