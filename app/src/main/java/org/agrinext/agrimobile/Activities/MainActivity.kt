@@ -100,10 +100,10 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
                 fragment = Dashboard()
             }
             R.id.nav_market -> {
-                startActivity(Intent(this, ListingActivity::class.java))
+                fragment = ListingActivity()
             }
             R.id.nav_sellers -> {
-                startActivity(Intent(this, ListingActivity::class.java))
+                fragment = ListingActivity()
             }
             R.id.nav_my_profile -> {
                 fragment = UserProfile()
@@ -115,10 +115,10 @@ class MainActivity : BaseCompatActivity(), NavigationView.OnNavigationItemSelect
                 share("https://agrinext.org")
             }
             R.id.nav_locations -> {
-                startActivity(Intent(this, ListingActivity::class.java))
+                fragment = ListingActivity()
             }
             R.id.nav_items -> {
-                startActivity(Intent(this, ListingActivity::class.java))
+                fragment = ListingActivity()
             }
         }
 

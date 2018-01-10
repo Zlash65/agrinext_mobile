@@ -1,27 +1,34 @@
 package org.agrinext.agrimobile.Activities
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import org.agrinext.agrimobile.Android.BaseCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import org.agrinext.agrimobile.Android.ListViewAdapter
 import org.agrinext.agrimobile.R
+import org.jetbrains.anko.support.v4.find
 import org.json.JSONArray
 import org.json.JSONObject
 
-class ListingActivity : BaseCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_listing)
+class ListingActivity : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.activity_listing, null)
+    }
 
-        val mRecyclerView: RecyclerView = findViewById(R.id.recycler_view)
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val mRecyclerView: RecyclerView = find(R.id.recycler_view)
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        val mLayoutManager = LinearLayoutManager(this);
+        val mLayoutManager = LinearLayoutManager(activity);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // JSON Array from frappe's listing
@@ -33,7 +40,7 @@ class ListingActivity : BaseCompatActivity() {
         }
 
         // specify an adapter
-        // val mAdapter = ListViewAdapter(jsonArray);
-        // mRecyclerView.setAdapter(mAdapter);
+        val mAdapter = ListViewAdapter(jsonArray);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
