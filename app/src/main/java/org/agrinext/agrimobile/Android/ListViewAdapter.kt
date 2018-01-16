@@ -1,5 +1,9 @@
 package org.agrinext.agrimobile.Android
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
@@ -7,9 +11,12 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import org.acra.ACRA.log
+import org.agrinext.agrimobile.Activities.FormGeneratorActivity
 import org.agrinext.agrimobile.R
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -17,11 +24,12 @@ import org.json.JSONObject
  * Created by revant on 28/12/17.
  */
 
-class ListViewAdapter(var doc_list:JSONArray): RecyclerView.Adapter<ListViewAdapter.ViewHolder>(), Filterable {
+class ListViewAdapter(var doc_list:JSONArray, var cont: Activity): RecyclerView.Adapter<ListViewAdapter.ViewHolder>(), Filterable {
     fun setLoadDataCallback() {
 
     }
     val immutable_doc_list = doc_list
+//    var cont = cont
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
@@ -79,5 +87,14 @@ class ListViewAdapter(var doc_list:JSONArray): RecyclerView.Adapter<ListViewAdap
         }
         val jsonObject = doc_list.getJSONObject(p)
         holder!!.bind(jsonObject)
+
+        holder.itemView.setOnClickListener() {
+            log.d("Clicked Item", jsonObject.toString())
+//            startActivity<FormGeneratorActivity>()
+//            var intent = FormGeneratorActivity.newIntent(context)
+//            startActivity(intent)
+            cont.startActivity(Intent(cont, FormGeneratorActivity::class.java))
+//            startActivity(Intent(cont, FormGeneratorActivity::class.java))
+        }
     }
 }

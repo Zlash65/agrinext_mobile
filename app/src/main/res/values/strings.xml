@@ -38,8 +38,9 @@
 
     <!-- OAUTH -->
     <string name="package_name">org.agrinext.agrimobile</string>
-    <string name="serverURL">http://192.168.0.108:8000</string>
-    <string name="clientId">6663db6e09</string>
+    <string name="serverURL">http://10.54.0.81:8000</string>
+    <string name="clientId">a67b90d66e</string>
+    <string name="clientSecret">caf859fd26</string>
     <string name="allowMultipleAccounts">0</string>
     <string name="otpSenderNumber">88793</string>
     <string name="getOTPEndpoint">/api/method/agrinext.otp.get</string>
