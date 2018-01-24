@@ -24,6 +24,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import org.agrinext.agrimobile.Android.*
 import android.view.MenuInflater
 import kotlinx.android.synthetic.main.activity_listing.*
+import org.acra.ACRA.log
 import org.agrinext.agrimobile.Android.BaseCompatActivity.Companion.DOCTYPE
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.startActivity
@@ -56,8 +57,11 @@ open class ListingActivity : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
+        var itemPosition = mRecyclerView.getChildLayoutPosition(view)
+        var value = JSONObject(recyclerModels.get(itemPosition).toString()).get("name")
         var intent = Intent(activity, FormGeneratorActivity::class.java)
         intent.putExtra("DocType", this.doctype)
+        intent.putExtra("Docname", value.toString())
         startActivity(intent)
     }
 
